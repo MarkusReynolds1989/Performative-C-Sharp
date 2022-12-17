@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{F5ACA75E-5FCF-4C76-802F-147AA9F1E2CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopicExamplesTests", "TopicExamplesTests\TopicExamplesTests.csproj", "{F5ACA75E-5FCF-4C76-802F-147AA9F1E2CF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Segments 1-2-3", "Segments 1-2-3", "{88E28741-4427-4285-A82E-BC8DF84AFCC5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Segment 5", "Segment 5", "{E541E6A0-C855-4201-8521-CA418E38B72F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Segment 4", "Segment 4", "{B3C4D6CE-0DF7-4E24-995E-1C1CA8ABEDCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopicExampleCode", "TopicExampleCode\TopicExampleCode.csproj", "{9189DAE1-C54A-4562-AACB-220130AC7902}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +26,12 @@ Global
 		{F5ACA75E-5FCF-4C76-802F-147AA9F1E2CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5ACA75E-5FCF-4C76-802F-147AA9F1E2CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5ACA75E-5FCF-4C76-802F-147AA9F1E2CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9189DAE1-C54A-4562-AACB-220130AC7902}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9189DAE1-C54A-4562-AACB-220130AC7902}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9189DAE1-C54A-4562-AACB-220130AC7902}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9189DAE1-C54A-4562-AACB-220130AC7902}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9189DAE1-C54A-4562-AACB-220130AC7902} = {88E28741-4427-4285-A82E-BC8DF84AFCC5}
 	EndGlobalSection
 EndGlobal
