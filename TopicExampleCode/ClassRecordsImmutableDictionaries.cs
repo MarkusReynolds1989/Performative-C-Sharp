@@ -45,13 +45,15 @@ public static class ClassRecordsImmutableDictionaries
 
     // Major downside with dynamic is that you cannot AOT this code. This takes advantage of runtime type resolution.
     // Upside is that you can cycle through the keys of the dictionary instead of using reflection on a class.
-    public static IDictionary<string, dynamic> CreateBank(int id, string address, decimal moneyAvailable)
+    public static IDictionary<string, dynamic> CreateBank(int id,
+                                                          string address,
+                                                          decimal moneyAvailable)
     {
         var bank = new Dictionary<string, dynamic>
         {
             {"id", id},
             {"address", address},
-            {"moneyAvailable", moneyAvailable}
+            {"moneyAvailable", moneyAvailable},
         };
 
         return bank.ToImmutableDictionary();
