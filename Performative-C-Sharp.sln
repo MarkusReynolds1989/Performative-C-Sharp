@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Segment 4", "Segment 4", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopicExampleCode", "TopicExampleCode\TopicExampleCode.csproj", "{9189DAE1-C54A-4562-AACB-220130AC7902}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustInvoke", "RustInvoke\RustInvoke.csproj", "{F9A5419D-45B6-44E8-AE52-2B2961ED8934}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,8 +32,13 @@ Global
 		{9189DAE1-C54A-4562-AACB-220130AC7902}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9189DAE1-C54A-4562-AACB-220130AC7902}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9189DAE1-C54A-4562-AACB-220130AC7902}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9A5419D-45B6-44E8-AE52-2B2961ED8934}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9A5419D-45B6-44E8-AE52-2B2961ED8934}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9A5419D-45B6-44E8-AE52-2B2961ED8934}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9A5419D-45B6-44E8-AE52-2B2961ED8934}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9189DAE1-C54A-4562-AACB-220130AC7902} = {88E28741-4427-4285-A82E-BC8DF84AFCC5}
+		{F9A5419D-45B6-44E8-AE52-2B2961ED8934} = {B3C4D6CE-0DF7-4E24-995E-1C1CA8ABEDCA}
 	EndGlobalSection
 EndGlobal
