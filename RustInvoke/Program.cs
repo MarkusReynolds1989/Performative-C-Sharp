@@ -33,5 +33,6 @@ internal static unsafe class Program
 
         var tom = create_person((nint) namePointer, 3, 32);
         Console.WriteLine($"Name: {Encoding.UTF8.GetString(new Span<byte>(tom.Name, 3))}, Age: {tom.Age}");
+        Marshal.FreeHGlobal((nint) tom.Name);
     }
 }

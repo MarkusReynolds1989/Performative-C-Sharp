@@ -32,8 +32,11 @@ impl Person {
     ) -> Person {
         let name = str::from_utf8(slice::from_raw_parts(name_bytes, count)).unwrap().to_uppercase();
 
+        let name_pointer = name.as_bytes().as_ptr();
+        mem::forget(name);
+
         Person {
-            name: name.as_bytes().as_ptr(),
+            name: name_pointer,
             age: age + 1,
         }
     }
