@@ -18,6 +18,7 @@ pub unsafe extern "C" fn reverse_array(input: *const i32, count: usize) -> *cons
     result
 }
 
+#[repr(C)]
 pub struct Person {
     name: *const u8,
     age: i32,
