@@ -20,8 +20,8 @@ pub unsafe extern "C" fn reverse_array(input: *const i32, count: usize) -> *cons
 
 #[repr(C)]
 pub struct Person {
-    name: *const u8,
-    age: i32,
+    pub name: *const u8,
+    pub age: i32,
 }
 
 impl Person {
@@ -31,7 +31,11 @@ impl Person {
         count: usize,
         age: i32,
     ) -> Person {
-        let name = str::from_utf8(slice::from_raw_parts(name_bytes, count)).unwrap().to_uppercase();
+        let name = str::from_utf8(slice::from_raw_parts(name_bytes, count))
+            .unwrap()
+            .to_uppercase();
+
+        println!("{}", name);
 
         let name_pointer = name.as_bytes().as_ptr();
         mem::forget(name);
@@ -39,6 +43,14 @@ impl Person {
         Person {
             name: name_pointer,
             age: age + 1,
+        }
+    }
+
+    #[no_mangle]
+    pub unsafe extern "C" fn increment_age(person: Person) -> Person {
+        Person {
+            age: person.age + 1,
+            ..person
         }
     }
 }
