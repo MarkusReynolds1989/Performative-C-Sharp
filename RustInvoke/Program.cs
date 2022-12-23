@@ -5,6 +5,9 @@ namespace RustInvoke;
 
 internal static unsafe class Program
 {
+    private const string LowLevelAlgo =
+        @"C:\Users\marku\Code\C#\Performative-C-Sharp\low_level_algo\target\debug\low_level_algo.dll";
+
     private ref struct Person
     {
         public readonly byte* Name;
@@ -17,10 +20,10 @@ internal static unsafe class Program
         }
     }
 
-    [DllImport(@"C:\Users\marku\Code\C#\Performative-C-Sharp\low_level_algo\target\debug\low_level_algo.dll")]
+    [DllImport(LowLevelAlgo)]
     private static extern Person create_person(nint nameBytes, int count, int age);
 
-    [DllImport(@"C:\Users\marku\Code\C#\Performative-C-Sharp\low_level_algo\target\debug\low_level_algo.dll")]
+    [DllImport(LowLevelAlgo)]
     private static extern Person increment_age(Person person);
 
     private static void Main()
@@ -32,6 +35,7 @@ internal static unsafe class Program
 
         var tomNew = increment_age(tom);
         Console.WriteLine($"Name: {RustString.FromRustString(tomNew.Name, 3)}, Age: {tomNew.Age}");
+        Console.ReadLine();
     }
 }
 
