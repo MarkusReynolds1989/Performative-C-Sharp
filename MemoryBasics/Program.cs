@@ -38,16 +38,26 @@ public static class Program
         // Even if you declare a variable as a struct it can be boxed and put on the heap, that's why you can't trust that
         // a struct is "stack allocated". 
 
-        // For instance, x is a struct or a "value type". But we can box it up by passing it by reference.
+        // Box x by assigning it to an object.
         int x = 3;
-        Console.WriteLine(x);
-        BoxAndChange(x);
-        Console.WriteLine(x);
+        // Because we are "upcasting" this to be of an object type it is now considered box, that is
+        // the box variable is a reference to the value type x.
+        object box = x;
+        ChangeBoxedValue(ref box);
+        Console.WriteLine(box);
+
+        string y = "test";
+        // The string won't get boxed because it already is, it's a reference type.
+        object boxString = y;
+        y = "one";
+
+        // String builder also won't get boxed because it's a reference type.
+        object boxStringBuilder = test;
     }
 
-    private static async void BoxAndChange(int x)
+    private static void ChangeBoxedValue(ref object item)
     {
-        await (() => Console.WriteLine(x));
+        item = 32;
     }
 
     private static void References()
