@@ -1,4 +1,7 @@
-﻿namespace TopicExampleCode;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Contracts;
+
+namespace TopicExampleCode;
 
 public static class LinqEfficiency
 {
@@ -15,7 +18,6 @@ public static class LinqEfficiency
         return list;
     }
 
-    // This is slower than using Linq to generate the list.
     public static List<string> BigAllocationForEachWithoutSize()
     {
         var list = new List<string>();
