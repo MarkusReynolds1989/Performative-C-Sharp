@@ -10,6 +10,8 @@ namespace NativeWebScrape;
 
 internal static class Program
 {
+    private const int CURLOPT_URL = 10002;
+
     [DllImport("libcurl.dll")]
     private static extern nint curl_easy_init();
 
@@ -25,9 +27,11 @@ internal static class Program
     private static void Main()
     {
         var curl = curl_easy_init();
-        curl_easy_setopt(curl, 10002, "https://cat-fact.herokuapp.com/facts");
+        curl_easy_setopt(curl, CURLOPT_URL, "https://catfact.ninja/fact");
         var result = curl_easy_perform(curl);
-        Console.WriteLine(result);
+        // Now that the pointer is a managed string, we can do whatever we like with it.
+        var managedResult = Marshal.PtrToStringAuto(result);
+        Console.WriteLine(managedResult);
         curl_easy_cleanup(curl);
     }
 }
