@@ -53,6 +53,8 @@ public static class Program
 
         // String builder also won't get boxed because it's a reference type.
         object boxStringBuilder = test;
+
+        // Boxing and unboxing are very expensive, so you should avoid it as much as possible.
     }
 
     private static void ChangeBoxedValue(ref object item)
