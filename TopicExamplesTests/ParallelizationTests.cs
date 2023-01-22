@@ -3,6 +3,8 @@
 public class ParallelizationTests
 {
     private readonly string[] _shortFile = File.ReadAllLines("strings_short.txt");
+    // You will have to make your own "strings_long.txt" file or follow along.
+    // Mine was 100_000_000 lines. It's just a file with the numbers 1 to 100_000_00 written on one line each.
     private readonly string[] _longFile = File.ReadAllLines("strings_long.txt");
 
     [Fact]
