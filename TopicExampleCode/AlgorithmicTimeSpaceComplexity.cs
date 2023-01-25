@@ -39,7 +39,7 @@ public class AlgorithmicTimeSpaceComplexity
         }
     }
 
-    // 2^O(n) <- Where n is the amount of items.
+    // O(n^2) <- Where n is the amount of items.
     public static void QuadraticComplexity()
     {
         // A typical example of quadratic time is when you have a nested for loop.
@@ -76,7 +76,7 @@ public class AlgorithmicTimeSpaceComplexity
         }
     }
 
-    // 2O^n <- Where n is the amount of items.
+    // O(2^n) <- Where n is the amount of items.
     public static void ExponentialComplexity()
     {
         // This is often seen in situations where you have 3 + nested loops.
