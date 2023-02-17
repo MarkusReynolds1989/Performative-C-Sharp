@@ -11,11 +11,11 @@ public static class Program
         // All of these value types get stack allocated, then they get popped off the stack
         // and stored as local integers of the Main method.
         int item = 3;
+        AddOne(item);
+        
         double dollars = 100.00;
         char itemTwo = 'a';
         int final = 43;
-
-        var result = final + itemTwo;
 
         // This is a reference type, so a reference is allocated to the stack and the memory of the actual string
         // is somewhere on the heap.
@@ -30,7 +30,7 @@ public static class Program
         // When we assign it like this, a local variable gets created for the Main Method.
         //var _ = test.Append("a");
 
-        References();
+        References(test);
 
         // Boxing
         // When we have a value type that we want to put on the heap, it gets boxed. 
@@ -57,12 +57,17 @@ public static class Program
         // Boxing and unboxing are very expensive, so you should avoid it as much as possible.
     }
 
+    private static void AddOne(int input)
+    {
+        input += 1;
+    }
+
     private static void ChangeBoxedValue(ref object item)
     {
         item = 32;
     }
-
-    private static void References()
+    
+    private static void References(StringBuilder stringBuilder)
     {
         // This stringBuilder object will get put on the heap, and the reference to it will be on the stack.
         var item = new StringBuilder();
@@ -71,5 +76,6 @@ public static class Program
         // A garbage collector will come and deallocate the memory automatically when it detects that there are no more
         // references in use for it (provided the program even lives that long).
         item.Append("a");
+        stringBuilder = item;
     }
 }

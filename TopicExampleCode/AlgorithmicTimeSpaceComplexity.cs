@@ -17,13 +17,42 @@ public class AlgorithmicTimeSpaceComplexity
     }
 
     // O(n log n) <- where n is the amount of items.
-    public static void LogarithmicComplexity()
+    public static int LogarithmicComplexity()
     {
         // Binary search, we don't go through the whole collection
         // instead, we sub divide the collection each cycle to make it smaller and smaller until
         // we get the result. Thus, much faster and efficient operation.
         // Not always easy to use, for instance to use Binary search we have to have our elements pre-sorted.
         // Merge sort is also an example of Logarithmic Complexity. 
+
+        var collection = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+
+        var left = 0;
+        var right = collection.Length - 1;
+        const int query = 5;
+        var solution = -1;
+
+        while (left <= right)
+        {
+            var middle = left + (right - left) / 2;
+
+            if (collection[middle] == query)
+            {
+                solution = middle;
+            }
+
+            if (collection[middle] < query)
+            {
+                left = middle + 1;
+            }
+
+            else
+            {
+                right = middle - 1;
+            }
+        }
+
+        return solution;
     }
 
     // O(n) <- where n is the amount of items.

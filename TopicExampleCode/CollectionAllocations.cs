@@ -30,8 +30,42 @@ public static class CollectionAllocations
     {
         // Arrays are heap allocated in C#, they are reference types.
         // These are usually pretty efficient collections that you should try to use most of the time.
+        // The efficiency here is that an array isn't growable, so the memory use is going to stay consistent,
+        // the memory will be allocated one time when the array is created and not more.
         var test = new[] {1, 2, 3, 4};
         test[0] = 55;
         // If you want your array to be stack allocated, you will need to look at the solution above using the stackalloc keyword.
+    }
+
+    public static void ListExample()
+    {
+        // Lists are resizeable arrays.
+        var list = new List<int>(200)
+        {
+            [0] = 1
+        };
+
+        // What's actually happening behind the scenes is that an array is being allocated.
+        // When we exceed capacity, our items are copied over to a new array with an extended
+        // capacity.
+        // If we set the capacity, the array will be bigger and thus it will take longer before we need to allocate
+        // again.
+        // Remember, allocations are slow and we should avoid them if possible (and we have a verified bottleneck).
+
+        list.Capacity = 400;
+        // When we add more items than we have set aside capacity for it has to allocate more memory.
+        // It doesn't just add the space needed, there is usually an algorithm that will allocated more than needed.
+        list.AddRange(Enumerable.Range(0, 1000));
+        list.Clear();
+        // I will show List.cs here to show how the extra memory gets allocated.
+    }
+    
+    public static void DictionaryExample()
+    {
+        // Very similar to the List, there is a capacity that must get resized and then
+        // data has to get copied over.
+        var dict = new Dictionary<int, int>();
+        dict.Add(1,2);
+        dict.Add(4,5);
     }
 }
