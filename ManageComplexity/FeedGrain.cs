@@ -2,25 +2,25 @@
 
 public class FeedGrain
 {
-    public FeedGrain(string scGroupId,
-                     string scGroupDescription,
-                     string scGroupCommodityId,
-                     string scGroupCommodityDescription,
-                     string scGeographyId,
-                     string sortOrder,
-                     string scGeographyIndentedDescription,
-                     string scCommodityId,
-                     string scCommodityDescription,
-                     string scAttributeId,
-                     string scAttributeDescription,
-                     string scUnitId,
-                     string scUnitDescription,
-                     string yearId,
-                     string scFrequencyId,
-                     string scFrequencyDescription,
-                     string timePeriodId,
-                     string timePeriodDescription,
-                     string amount)
+    private FeedGrain(string scGroupId,
+                      string scGroupDescription,
+                      string scGroupCommodityId,
+                      string scGroupCommodityDescription,
+                      string scGeographyId,
+                      string sortOrder,
+                      string scGeographyIndentedDescription,
+                      string scCommodityId,
+                      string scCommodityDescription,
+                      string scAttributeId,
+                      string scAttributeDescription,
+                      string scUnitId,
+                      string scUnitDescription,
+                      string yearId,
+                      string scFrequencyId,
+                      string scFrequencyDescription,
+                      string timePeriodId,
+                      string timePeriodDescription,
+                      string amount)
     {
         ScGroupId = string.IsNullOrEmpty(scGroupId) ? 0 : int.Parse(scGroupId);
         ScGroupDescription = scGroupDescription;
