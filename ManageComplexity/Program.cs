@@ -140,6 +140,11 @@ internal static class Program
                                                                       IEnumerable<FeedGrain> yearsAfter1950) =>
         yearsAfter1950.Where(x => yearsBefore1950.All(y => x.Amount > y.Amount));
 
+    private static IEnumerable<FeedGrain> ParallelFilterHigherAmountYears(
+        IEnumerable<FeedGrain> yearsBefore1950,
+        IEnumerable<FeedGrain> yearsAfter1950) =>
+        yearsAfter1950.AsParallel().Where(x => yearsBefore1950.AsParallel().All(y => x.Amount > y.Amount));
+
     private static void Main()
     {
         // Use your own path here.
@@ -163,5 +168,8 @@ internal static class Program
         Console.WriteLine($"Linq: {olderGoodYearsLinq.Length}");
         Console.WriteLine($"Quad: {olderGoodYearsQuad.Count}");
         Console.WriteLine($"Seq: {olderGoodYearsSeq.Count}");
+
+        //var feedGrainParallel = ParallelFilterHigherAmountYears(feedGrainBefore1950, feedGrainAfter1950).ToArray();
+        //Console.WriteLine($"Parallel: {feedGrainParallel.Length}");
     }
 }
