@@ -86,14 +86,15 @@ internal static class Program
         return list;
     }
 
-    private static List<FeedGrain> QuadraticSequentialFilterHigherAmountYears(List<FeedGrain> yearsBefore1950,
-                                                                 List<FeedGrain> yearsAfter1950)
+    // This is slower than just doing a naive quadratic foreach.
+    private static List<FeedGrain> QuadraticSequentialFilterHigherAmountYears(IReadOnlyList<FeedGrain> yearsBefore1950,
+                                                                              IReadOnlyList<FeedGrain> yearsAfter1950)
     {
         var list = new List<FeedGrain>(yearsAfter1950.Count);
         var lowIndex = 0;
         var highIndex = 0;
         var higher = false;
-        
+
         // This is also slow although the nested loop is gone, this is still quadratic.
         // The reason for this is we are still iterating through the second collection for every high year.
         while (highIndex < yearsAfter1950.Count)
@@ -135,6 +136,10 @@ internal static class Program
         return list;
     }
 
+    private static IEnumerable<FeedGrain> LinqFilterHigherAmountYears(IEnumerable<FeedGrain> yearsBefore1950,
+                                                                      IEnumerable<FeedGrain> yearsAfter1950) =>
+        yearsAfter1950.Where(x => yearsBefore1950.All(y => x.Amount > y.Amount));
+
     private static void Main()
     {
         // Use your own path here.
@@ -146,8 +151,17 @@ internal static class Program
         var feedGrainBefore1950 = FilterYears(feedGrain, 1950, "<");
         var feedGrainAfter1950 = FilterYears(feedGrain, 1950, ">");
 
-        var olderGoodYears = QuadraticFilterHigherAmountYears(feedGrainBefore1950, feedGrainAfter1950);
-        Console.WriteLine(olderGoodYears.Count);
-        var debug = 0;
+        //var olderGoodYears = QuadraticFilterHigherAmountYears(feedGrainBefore1950, feedGrainAfter1950);
+        //var feedGrainBefore1950Linq = feedGrain.ToArray().Where(grain => grain.YearId < 1950);
+        //var feedGrainAfter1950Linq = feedGrain.ToArray().Where(grain => grain.YearId > 1950);
+
+        // This is why profiling is important, because we see that Linq is actually a good and performant solution to this problem.
+        var olderGoodYearsLinq = LinqFilterHigherAmountYears(feedGrainBefore1950, feedGrainAfter1950).ToArray();
+        var olderGoodYearsQuad = QuadraticFilterHigherAmountYears(feedGrainBefore1950, feedGrainAfter1950);
+        var olderGoodYearsSeq = QuadraticSequentialFilterHigherAmountYears(feedGrainBefore1950, feedGrainAfter1950);
+
+        Console.WriteLine($"Linq: {olderGoodYearsLinq.Length}");
+        Console.WriteLine($"Quad: {olderGoodYearsQuad.Count}");
+        Console.WriteLine($"Seq: {olderGoodYearsSeq.Count}");
     }
 }
