@@ -1,4 +1,6 @@
-﻿namespace ManageComplexity;
+﻿using System.Runtime.CompilerServices;
+
+namespace ManageComplexity;
 
 using System;
 using System.IO;
@@ -52,21 +54,20 @@ internal static class Program
         return list;
     }
 
-    // I want to get every year before 1950 where the amount was higher than all the years after 1950.
-    // To qualify, each year before 1950 must be higher than every year after.
-    /*private static List<FeedGrain> NaiveFilterHigherAmountYears(List<FeedGrain> yearsBefore1950,
-                                                                List<FeedGrain> yearsAfter1950)
+    // I want to get every year after 1950 where the amount was higher than any of the years before 1950.
+    // To qualify, each year after 1950 must be higher than every year before 1950.
+    private static List<FeedGrain> QuadraticFilterHigherAmountYears(List<FeedGrain> yearsBefore1950,
+                                                                    List<FeedGrain> yearsAfter1950)
     {
         var list = new List<FeedGrain>(yearsAfter1950.Count);
         var higher = false;
 
-        // Quadratic time complexity.
-        // We should avoid this because it will make our code slower.
+        // A nested loop, quadratic time.
         foreach (var highYear in yearsAfter1950)
         {
             foreach (var lowYear in yearsBefore1950)
             {
-                if (lowYear.Amount < highYear.Amount)
+                if (lowYear.Amount > highYear.Amount)
                 {
                     higher = false;
                     break;
@@ -80,31 +81,39 @@ internal static class Program
                 list.Add(highYear);
             }
         }
-        
+
         list.TrimExcess();
         return list;
-    }*/
+    }
 
-    private static List<FeedGrain> LinearFilterHigherAmountYears(List<FeedGrain> yearsBefore1950,
+    private static List<FeedGrain> QuadraticSequentialFilterHigherAmountYears(List<FeedGrain> yearsBefore1950,
                                                                  List<FeedGrain> yearsAfter1950)
     {
         var list = new List<FeedGrain>(yearsAfter1950.Count);
         var lowIndex = 0;
         var highIndex = 0;
         var higher = false;
+        
+        // This is also slow although the nested loop is gone, this is still quadratic.
+        // The reason for this is we are still iterating through the second collection for every high year.
         while (highIndex < yearsAfter1950.Count)
         {
             if (lowIndex < yearsBefore1950.Count)
             {
-                if (yearsBefore1950[lowIndex].Amount < yearsAfter1950[highIndex].Amount)
+                if (yearsBefore1950[lowIndex].Amount > yearsAfter1950[highIndex].Amount)
                 {
                     higher = false;
+                    // Go to the next year after 1950.
                     highIndex += 1;
+
+                    // Reset the years before 1950.
                     lowIndex = 0;
                 }
                 else
                 {
                     higher = true;
+
+                    // Go to the next low year.
                     lowIndex += 1;
                 }
             }
@@ -137,7 +146,7 @@ internal static class Program
         var feedGrainBefore1950 = FilterYears(feedGrain, 1950, "<");
         var feedGrainAfter1950 = FilterYears(feedGrain, 1950, ">");
 
-        var olderGoodYears = LinearFilterHigherAmountYears(feedGrainBefore1950, feedGrainAfter1950);
+        var olderGoodYears = QuadraticFilterHigherAmountYears(feedGrainBefore1950, feedGrainAfter1950);
         Console.WriteLine(olderGoodYears.Count);
         var debug = 0;
     }

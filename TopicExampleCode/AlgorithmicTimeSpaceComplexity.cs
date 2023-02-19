@@ -95,31 +95,7 @@ public class AlgorithmicTimeSpaceComplexity
             items.Clear();
         }
 
-        newList.Clear();
-
-        // Any time you see a quadratic algorithm and you've profiled it to verify it's slow in the context
-        // of your program, you should refactor it so that it's flat.
-        // Thus, you can reduce the time complexity by handling the complexity it yourself.
-        // This algorithm now has linear complexity.
-        var innerIndex = 0;
-        var outerIndex = 0;
-        while (outerIndex < list.Count)
-        {
-            if (innerIndex < list[outerIndex].Count)
-            {
-                items.Add(list[outerIndex][innerIndex] + 1);
-                innerIndex += 1;
-            }
-            else
-            {
-                innerIndex = 0;
-                outerIndex += 1;
-                newList.Add(items);
-                items = new List<int>();
-            }
-        }
-
-        return newList;
+        return list;
     }
 
     // O(2^n) <- Where n is the amount of items.
@@ -130,8 +106,6 @@ public class AlgorithmicTimeSpaceComplexity
         // you can run into this situation, where you have to run permutations against permutations.    
         // If you see something like this it may take some deeper thinking about the problem but it's very likely
         // worth a refactor.
-        // There are some problems that REQUIRE this approach, however, such as the traveling salesman problem using
-        // dynamic programming.
         var deepList = new List<List<List<int>>>
         {
             new() {new() {1, 2, 3, 4}, new() {1, 2, 3, 4}, new() {1, 2, 3, 4}},
