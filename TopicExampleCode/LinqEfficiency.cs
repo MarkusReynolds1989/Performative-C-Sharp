@@ -1,7 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
-
-namespace TopicExampleCode;
+﻿namespace TopicExampleCode;
 
 public static class LinqEfficiency
 {
@@ -64,7 +61,7 @@ public static class LinqEfficiency
     public static IDictionary<int, string> GenerateDictionaryManual()
     {
         var dictionary = new Dictionary<int, string>();
-        foreach (var i in Enumerable.Range(0, 200_000_000))
+        foreach (var i in Enumerable.Range(0, 50_000_000))
         {
             dictionary.Add(i, "Test");
         }
@@ -73,5 +70,5 @@ public static class LinqEfficiency
     }
 
     public static IDictionary<int, string> GenerateDictionaryLinq() =>
-        Enumerable.Range(0, 200_000_000).ToDictionary(i => i, i => "Test").ToImmutableDictionary();
+        Enumerable.Range(0, 50_000_000).ToDictionary(i => i, i => "Test").ToImmutableDictionary();
 }

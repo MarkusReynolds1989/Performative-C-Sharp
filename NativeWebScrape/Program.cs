@@ -40,6 +40,10 @@ internal static class Program
     {
         const string url = "https://catfact.ninja/fact";
 
+        var httpClient = new HttpClient();
+        var clientResponse = httpClient.GetAsync(url).Result;
+        Console.WriteLine(clientResponse);
+
         var curl = curl_easy_init();
         curl_easy_setopt(curl, CurlOptions.Url, url);
         var result = curl_easy_perform(curl);

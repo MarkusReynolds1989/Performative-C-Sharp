@@ -86,7 +86,6 @@ internal static class Program
         return list;
     }
 
-    // This is slower than just doing a naive quadratic foreach.
     private static List<FeedGrain> QuadraticSequentialFilterHigherAmountYears(IReadOnlyList<FeedGrain> yearsBefore1950,
                                                                               IReadOnlyList<FeedGrain> yearsAfter1950)
     {
@@ -95,8 +94,6 @@ internal static class Program
         var highIndex = 0;
         var higher = false;
 
-        // This is also slow although the nested loop is gone, this is still quadratic.
-        // The reason for this is we are still iterating through the second collection for every high year.
         while (highIndex < yearsAfter1950.Count)
         {
             if (lowIndex < yearsBefore1950.Count)

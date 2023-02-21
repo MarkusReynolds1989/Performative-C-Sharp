@@ -8,10 +8,11 @@ public static class ClassRecordsImmutableDictionaries
         Withdrawal
     }
 
-    // A record is very similar to a struct. The big difference is that a record is just a plain data type and it is immutable.
-    // It is also pass by value. This means that it will copy to every method that uses it.
-    // Use these when you just need plain data and you need it to be immutable.
+    // The big difference is that a record is just a plain data type and it is immutable.
     public record Transaction(int Id, decimal Amount, TransactionType TransactionType);
+    
+    // It can also be pass by value. This means that it will copy to every method that uses it.
+    public record struct Person(int id);
 
     public record Account(int Id, IList<Transaction> Transactions);
 

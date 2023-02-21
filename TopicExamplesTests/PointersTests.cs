@@ -13,7 +13,7 @@ public class PointersTests
 
         data[0] = 3;
         Assert.Equal(data[0], 3);
-        Marshal.FreeHGlobal((IntPtr) data);
+        Marshal.FreeHGlobal((nint) data);
     }
 
     [Fact]
@@ -21,8 +21,8 @@ public class PointersTests
     {
         var data = (int*) Marshal.AllocHGlobal(10 * sizeof(int));
         Assert.NotEqual(data[22], 3);
-        Marshal.FreeHGlobal((IntPtr) data);
-        // Even though we are outside the bounds of the array, we still can get data from data 200, but it's 
+        Marshal.FreeHGlobal((nint) data);
+        // Even though we are outside the bounds of the array, we still can get data from data 22, but it's 
         // random data and we actually don't own it.
         // That's what makes pointers unsafe.
         // There are cases where this test could fail because that memory spot might actually be 3.
@@ -44,7 +44,7 @@ public class PointersTests
         // Pass that pointer to data into the max method along with it's length to find it's max.
         var max = PointersExample.Max(data, 10);
         // Don't forget to free the allocated data.
-        Marshal.FreeHGlobal((IntPtr) data);
+        Marshal.FreeHGlobal((nint) data);
         Assert.Equal(max, 10_000);
     }
 }

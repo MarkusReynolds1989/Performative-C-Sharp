@@ -9,7 +9,7 @@ public static class MarshalExample
         // If you know C++ or C this will be familiar for you.
         // In this case, because the pointer only points to the first element of memory it will only return that one.
         // Console.WriteLine(charList->ToString());
-
+        
         var first = 0;
         var last = length;
 
