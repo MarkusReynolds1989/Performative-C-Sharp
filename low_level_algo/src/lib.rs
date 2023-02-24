@@ -18,6 +18,21 @@ pub unsafe extern "C" fn reverse_array(input: *const i32, count: usize) -> *cons
     result
 }
 
+#[no_mangle]
+pub unsafe extern "C" fn c_sharp_map(input: *const i32, mapper: extern fn (i32) -> i32, count: usize) -> *const i32 {
+    let items = slice::from_raw_parts(input, count);
+    let vector = items
+        .iter()
+        .map(|i| -> i32 { mapper(*i) })
+        .collect::<Vec<i32>>();
+
+    let result = vector.as_ptr();
+    mem::forget(vector);
+
+    result
+}
+
+
 #[repr(C)]
 pub struct Person {
     pub name: *const u8,
