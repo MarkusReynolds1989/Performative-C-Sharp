@@ -53,4 +53,11 @@ public class MemoryTests
         MemoryExample.Examples.DoWork("test".ToArray());
         // Also read about Memory ownership: https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines
     }
+
+    [Fact]
+    public void SubStringTest()
+    {
+        var subString = MemoryExample.Examples.MemorySubString("Tom".AsMemory(), 0, 1);
+        Assert.Equal("T", subString.ToString());
+    }
 }

@@ -57,4 +57,12 @@ public class SpanExamples
         SpanExample.AssignValues(values);
         Assert.Equal(0, values[0]);
     }
+
+    [Fact]
+    public void SubStringTest()
+    {
+        var name = "Tom"u8;
+        var first = name.SubString(0, 2);
+        Assert.Equal("To"u8.ToString(), first.ToString());
+    }
 }

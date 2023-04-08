@@ -16,6 +16,9 @@ public static class SpanExample
         }
     }
 
+    public static ReadOnlySpan<byte> SubString(this ReadOnlySpan<byte> subString, int start, int end) =>
+        subString[start..end];
+
     public static IEnumerable<int> AssignValues()
     {
         Span<int> arrayStack = stackalloc int[10];

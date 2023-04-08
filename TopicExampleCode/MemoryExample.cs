@@ -32,5 +32,11 @@ public static class MemoryExample
             // Memory can be used in async await situations.
             await Task.Run(() => Console.WriteLine(info.ToString()));
         }
+
+        public static ReadOnlyMemory<char> MemorySubString(ReadOnlyMemory<char> subString, int start, int count)
+        {
+            var span = subString.Span;
+            return span[start..count].ToArray();
+        }
     }
 }
