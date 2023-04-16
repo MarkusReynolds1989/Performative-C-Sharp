@@ -51,7 +51,6 @@ impl Person {
             .to_uppercase();
 
         println!("{}", name);
-
         let name_pointer = name.as_bytes().as_ptr();
         mem::forget(name);
 
@@ -67,5 +66,14 @@ impl Person {
             age: person.age + 1,
             ..person
         }
+    }
+}
+
+#[cfg(test)]
+mod tests
+{
+    #[test]
+    pub fn a_test(){
+        assert!(1 == 1)
     }
 }

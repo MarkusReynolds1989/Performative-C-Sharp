@@ -16,8 +16,8 @@ internal static partial class Program
 
     [LibraryImport("msvcrt.dll", EntryPoint = "fopen_s", StringMarshalling = StringMarshalling.Utf8)]
     private static partial int OpenFile(out IntPtr file,
-                                        string     fileName,
-                                        string     mode);
+                                        string fileName,
+                                        string mode);
 
     [LibraryImport("msvcrt.dll", EntryPoint = "fread", StringMarshalling = StringMarshalling.Utf8)]
     private static partial void ReadFile(Span<byte> buffer, int size, int number, IntPtr file);
@@ -29,7 +29,7 @@ internal static partial class Program
     {
         // Read a file.
         var result = OpenFile(out var file,
-                              @"C:\Users\marku\Code\C#\Low-Level-CSharp\src\PlatformInvokeConsole\test.txt", "r");
+                              @"C:\Users\marku\home\code\c#\Low-Level-CSharp\src\PlatformInvokeConsole\test.txt", "r");
 
         // Allocate some space on the stack to store the contents of the buffer.
         // Don't have to worry about freeing this memory, it will pop off the stack at the end of the frame.
@@ -38,9 +38,10 @@ internal static partial class Program
         ReadFile(buffer, sizeof(byte), 27, file);
         // Close the file.
         CloseFile(file);
-
         // Write the contents of the buffer out.
-        Console.WriteLine(Encoding.Default.GetString(buffer));
+        // I'm slicing into the span to get from the third byte on because the first few bytes are for the 
+        // Byte order mark which will print ?.
+        Console.WriteLine(Encoding.UTF8.GetString(buffer[3..]));
 
         // Allocate 5 bytes on the heap.
         var name = Marshal.AllocHGlobal(sizeof(byte) * 5);
@@ -50,7 +51,7 @@ internal static partial class Program
         CopyString(name, temp, 4);
 
         // Allocated 100 ints on the heap.
-        var numbersPtr = Marshal.AllocHGlobal(sizeof(int)     * 100);
+        var numbersPtr = Marshal.AllocHGlobal(sizeof(int) * 100);
         var destinationPtr = Marshal.AllocHGlobal(sizeof(int) * 100);
         // Get a span to cover that memory.
         var numbers = new Span<int>(numbersPtr.ToPointer(), 100)
