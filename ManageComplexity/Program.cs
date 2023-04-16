@@ -145,7 +145,7 @@ internal static class Program
     private static void Main()
     {
         // Use your own path here.
-        const string path = @"C:\Users\marku\Code\C#\Performative-C-Sharp\Data\FeedGrains.txt";
+        const string path = @"C:\Users\home\marku\Code\C#\Performative-C-Sharp\Data\FeedGrains.txt";
 
         // Takes around 6 seconds.
         var feedGrain = FeedGrainBuilder(path);
