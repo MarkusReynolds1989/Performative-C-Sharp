@@ -1,5 +1,5 @@
 # Performative C# 
-Repository for an upcoming O'Reilly course on writing performative programs in C#.
+Repository for an upcoming a Pearson published course on performative C#.
 
 You will need:
 .Net 7 - Compiling the .Net code, running the tests
